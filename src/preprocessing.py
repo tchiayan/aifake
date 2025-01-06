@@ -27,7 +27,6 @@ def main(
     
     for idx , row in df.iterrows(): 
         filepath = os.path.join(data_folder , 'Train' , row['image'])
-        shutil.copy(filepath , os.path.join(output_folder , 'train' , row['image']))
         image = Image.open(filepath)
         image_np = np.array(image)
         mean_rgb = image_np.mean()
