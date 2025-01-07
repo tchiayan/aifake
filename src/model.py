@@ -41,7 +41,7 @@ class FakeModelDetection(pl.LightningModule):
         
         output = self(images)
         loss = F.binary_cross_entropy_with_logits(output , labels)
-        self.acc_val(output , labels)
+        self.acc_train(output , labels)
         self.precision_train(output , labels)
         self.recall_train(output , labels)
         self.auroc_train(output , labels)
