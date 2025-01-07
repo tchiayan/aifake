@@ -1,8 +1,9 @@
-scikit-learn 
-dvc 
-torch 
-torchvision 
+scikit-learn
+dvc
+torch
+torchvision
 torchaudio
 mlflow
 matplotlib
 lightning
+pre-commit
