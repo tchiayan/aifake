@@ -15,7 +15,7 @@ class FakeDataset(Dataset):
         self.subset = subset
         self.transforms = get_transforms(train=is_train) # C , H , W
 
-        annoation_file = self.data_folder / f"{subset}.csv"
+        annoation_file = os.path.join(self.data_folder , f"{subset}.csv")
 
         if not os.path.exists(annoation_file):
             raise FileNotFoundError(f"{annoation_file} not found")
@@ -28,7 +28,7 @@ class FakeDataset(Dataset):
         return len(self.df)
 
     def __getitem__(self, index):
-        image_path = self.data_folder / self.subset / self.df.loc[index , 'image']
+        image_path = os.path.join(self.data_folder  , self.subset , self.df.loc[index , 'image'])
         image = Image.open(image_path)
         image = self.transforms(image)
 

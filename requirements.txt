@@ -7,3 +7,4 @@ mlflow
 matplotlib
 lightning
 pre-commit
+pytest
