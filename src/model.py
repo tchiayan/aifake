@@ -7,9 +7,11 @@ from torchmetrics import Accuracy , Precision , Recall , AUROC , F1Score
 
 class FakeModelDetection(pl.LightningModule):
 
-    def __init__(self):
+    def __init__(self ,  lr:float = 1e-3 , weight_decay:float = 0):
         super().__init__()
 
+        self.lr = lr
+        self.weight_decay = weight_decay
         self.model = efficientnet_b3(weights=EfficientNet_B3_Weights.DEFAULT)
         self.model.classifier[1] = nn.Linear(in_features=1536 , out_features=1)
 
@@ -105,4 +107,4 @@ class FakeModelDetection(pl.LightningModule):
         return self(images)
 
     def configure_optimizers(self):
-        return optim.Adam(self.parameters() , lr=1e-3)
+        return optim.Adam(self.parameters() , lr=self.lr , weight_decay=self.weight_decay)
